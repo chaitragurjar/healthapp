@@ -1,0 +1,102 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* 
+body{
+    background: linear-gradient(to right, #fff1e6, #fde2e4);
+    font-family: Poppins;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.HomePage{
+    background: linear-gradient(to right, #fbf8cc, #fbf8cc);
+    font-family: Poppins;
+    min-height: 100vh;    
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+  margin: 2rem;
+  text-emphasis-color: white;
+  font-family: "Playfair Display", serif;
+}
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card{
+    background: white;
+    padding: 1rem 2rem;
+    width: 50vh;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    /* text-align: center; */
+}
+
+.card h2{
+    text-align: center;
+}
+
+.card p{
+    padding-top: 2rem;
+    line-height: 150%;
+    text-align: justify;
+}
+
+/* .expand{
+    width: 20rem;
+} */
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #8eecf5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+    box-sizing: border-box;
+  }
+
+  button a {
+    color: black;
+    text-decoration: none;
+    display: block;
+  }
+
+  button:hover {
+    background-color: #90dbf4;
+  }
+
+  .right{
+    width: 50%;
+  }
+
+  .right img{
+    display: flex;
+    margin:0;
+    padding: 0;
+    top: 0;
+    padding-left: 10%;
+    /* position: fixed; */
+    height: 100vh;
+    width: auto;
+    object-fit: cover;
+  }
