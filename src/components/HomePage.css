@@ -66,7 +66,7 @@ button {
     width: 100%;
     padding: 10px 0;
     background-color: #8eecf5;
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -99,4 +99,9 @@ button {
     height: 100vh;
     width: auto;
     object-fit: cover;
+  }
+
+  form label input{
+    margin-top: 1rem;
+    margin-left: 1rem;
   }
