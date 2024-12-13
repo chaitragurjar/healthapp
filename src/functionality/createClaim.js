@@ -21,10 +21,18 @@ const updateJsonData = async (newEntry) => {
         if (!patientID || !policyID || !claimProof || !status) {
             throw new Error("Invalid entry: Ensure 'patientID', 'policyID', 'claimProof', and 'status' are provided.");
         }
-        jsonData.claimStatus.push(newEntry);
-        console.log("New entry added:", newEntry);
-        saveToFile(jsonData);
 
+        const existingIndex = jsonData.claimStatus.findIndex(entry => entry.patientID === patientID && entry.policyID === policyID);
+
+        if (existingIndex !== -1) {
+            jsonData.claimStatus[existingIndex] = { ...jsonData.claimStatus[existingIndex], claimProof, status };
+            console.log("Entry updated:", jsonData.claimStatus[existingIndex]);
+        } else {
+            jsonData.claimStatus.push(newEntry);
+            console.log("New entry added:", newEntry);
+            
+        }
+        saveToFile(jsonData);
         return jsonData;
     } catch (error) {
         console.error("Error updating JSON data:", error.message);

@@ -1,0 +1,50 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.AdminDashboard{
+    background: linear-gradient(to right, #fbf8cc, #fbf8cc);
+    font-family: Poppins;
+    min-height: 100vh;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+    margin: 2rem;
+    text-emphasis-color: white;
+    font-family: "Playfair Display", serif;
+}
+
+.admin-card-container{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.admin-card{
+    background: white;
+    padding: 1rem 2rem;
+    width: 150vh;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    /* text-align: center; */
+}
+
+.admin-card h2{
+    text-align: center;
+}
+
+.admin-card p{
+    padding-top: 2rem;
+    line-height: 150%;
+    text-align: justify;
+}

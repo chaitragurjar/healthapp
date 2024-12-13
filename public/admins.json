@@ -1,0 +1,18 @@
+{
+    "admins": [
+      {
+        "adminID": 1,
+        "name": "Chaitra",
+        "policyID": "MH-JAY",
+        "secret": "sEdTeReK3qLcj9Mj6Ycoz3XdffmCH2x",
+        "address": "rtVqVB9sznh64mucWghuASHEWAvAeqkc4"
+      },
+      {
+        "adminID": 2,
+        "name": "Swetha",
+        "policyID": "PM-JAY",
+        "secret": "sEdSyMn4GQHAJ7np8EGtV4vQivxEsEP",
+        "address": "r4DXyP1Z9PQY2rFZZqvedJxzh9yoNYLytS"
+      }
+    ]
+  }

@@ -99,7 +99,7 @@ button {
   flex: 1 1 30%;
   margin: 1rem;
   padding: 1rem;
-  background: #fde2e4;
+  background: #fff1e6;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -109,6 +109,15 @@ button {
   margin: 1rem;
   padding: 1rem;
   background: #e2ece9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rejected {
+  flex: 1 1 30%;
+  margin: 1rem;
+  padding: 1rem;
+  background: #fde2e4;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

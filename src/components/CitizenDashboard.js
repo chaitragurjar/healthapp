@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion'
 import { updateJsonData } from '../functionality/createClaim';
-import XrpTransfer from '../XrpTransfer';
 import { transfer } from '../functionality/transferMoney';
 import './CitizenDashboard.css';
 
@@ -38,7 +37,7 @@ const CitizenDashboard = () => {
   const trackClaims = () => {
     setStatusOpen(!statusOpen);
     if (!statusOpen) {
-      fetchPolicy();
+      fetchClaims();
     }
   };
 
@@ -56,7 +55,8 @@ const CitizenDashboard = () => {
   const policyStatus = () => {
     setPolicyOpen(!policyOpen);
     if (!policyOpen) {
-      fetchClaims();
+      fetchPolicy();
+      
     }
   };
 
@@ -161,9 +161,14 @@ const CitizenDashboard = () => {
             (<motion.div className='expand'>
               <ul className='claims'>
                 {claims.map((claim, index) => (
-                  <li key={index} className={`claim-item ${claim.status === 'PENDING' ? 'pending' : 'approved'}`}>
+                  <li key={index} className={`claim-item 
+                    ${claim.status === 'PENDING' ? 'pending' : ''} 
+                    ${claim.status === 'APPROVED' ? 'approved' : ''} 
+                    ${claim.status === 'REJECTED' ? 'rejected' : ''}`}>
                     <p>Policy ID: {claim.policyID}</p>
+                    <p>Hospital ID: {claim.hospitalID}</p>
                     <p>Claim Proof: {claim.claimProof}</p>
+                    <p>Amount: {claim.amount}</p>
                     <p>Status: {claim.status}</p>
                   </li>
                 ))}

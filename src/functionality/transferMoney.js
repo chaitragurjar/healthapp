@@ -39,10 +39,10 @@ const transfer = async (customerID, hospitalID, amount) => {
     const response2 = await fetch('/hospitals.json');
     const hospitalData = await response2.json();
 
-  const customer = patientData.patients.find(patient => patient.patientID === customerID);
+  const customer = patientData.patients.find(patient => patient.patientID == customerID);
   if (!customer) throw new Error(`Customer with ID ${customerID} not found`);
 
-  const hospital = hospitalData.hospitals.find(hospital => hospital.hospitalID === hospitalID);
+  const hospital = hospitalData.hospitals.find(hospital => hospital.hospitalID == hospitalID);
   if (!hospital) throw new Error(`Hospital with ID ${hospitalID} not found`);
 
   return await transferXRP(customer.secret, hospital.address, amount);

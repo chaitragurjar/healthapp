@@ -41,6 +41,18 @@
       "id": 2,
       "username": "aiims",
       "password": "aiims"
+    },
+    {
+      "type": "admin",
+      "id": 1,
+      "username": "admin1",
+      "password": "admin1"
+    },
+    {
+      "type": "admin",
+      "id": 2,
+      "username": "admin2",
+      "password": "admin2"
     }
   ]
 }

@@ -61,6 +61,27 @@ const HomePage = () => {
     }
   }
 
+  const handleAdmin = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch('/users.json');
+      console.log(response)
+      const data = await response.json();
+      const users = data.users;
+      const user = users.find(u => u.type === "admin" && u.username === username && u.password === password);
+
+      if (user) {
+        navigate('/admin-dashboard', { state: { userId: user.id } });
+        setResult('Login successful!');
+      } else {
+        setResult('Login failed. Incorrect username or password for Admin.');
+      }
+    } catch (error) {
+      console.error('Error fetching the users:', error);
+      setResult('An error occurred while trying to log in.');
+    }
+  }
+
   return (
     <div className='HomePage'>
       <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
@@ -121,15 +142,26 @@ const HomePage = () => {
             }
           </motion.div>
 
-          <motion.div layout onClick={() => setAdminOpen(!adminOpen)} className='card'>
-            <motion.h2 layout='position'>
+          <motion.div layout  className='card'>
+            <motion.h2 layout='position' onClick={() => setAdminOpen(!adminOpen)}>
               <img src={admin} alt="Icon" style={{ width: '35px', marginRight: '10px' }} />
               Administrator
             </motion.h2>
             {adminOpen &&
               (<motion.div className='expand'>
                 <p> Turn these wheels to watch claims, generate reports and manage policies. </p>
-                <p> <button><Link to="/admin-dashboard">Click Here to Login</Link></button> </p>
+                <form onSubmit={handleAdmin}>
+                  <label> Username:  
+                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                  </label>
+                  <br />
+                  <label> Password:  
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                  </label>
+                  <br />
+                  <button type="submit">Click Here to Login</button>
+                </form>
+                <p>{result}</p>
               </motion.div>)
             }
           </motion.div>

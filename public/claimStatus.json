@@ -5,8 +5,24 @@
       "hospitalID": 1,
       "policyID": "PM-JAY",
       "claimProof": "1234",
-      "amount" : 20000,
+      "amount": 20,
       "status": "APPROVED"
+    },
+    {
+      "patientID": 1,
+      "hospitalID": 1,
+      "policyID": "PM-JAY",
+      "claimProof": "7852",
+      "amount": 30,
+      "status": "PENDING"
+    },
+    {
+      "patientID": 1,
+      "hospitalID": 1,
+      "policyID": "MH-JAY",
+      "claimProof": "5468",
+      "amount": 20,
+      "status": "REJECTED"
     }
   ]
 }
