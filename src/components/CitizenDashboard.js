@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion'
 import { updateJsonData } from '../functionality/createClaim';
+import XrpTransfer from '../XrpTransfer';
+import { transfer } from '../functionality/transferMoney';
 import './CitizenDashboard.css';
 
 const CitizenDashboard = () => {
@@ -16,6 +18,8 @@ const CitizenDashboard = () => {
   const [policyOpen, setPolicyOpen] = useState(false);
   const [policy, setPolicy] = useState('');
   const [proof, setProof] = useState('');
+  const [hospitalID, setHospitalID] = useState('');
+  const [amount, setAmount] = useState('');
   const [result, setResult] = useState('');
   const [claims, setClaims] = useState([]);
   const [policies, setPolicies] = useState([]);
@@ -61,8 +65,10 @@ const CitizenDashboard = () => {
 
     const newEntry = {
       patientID: userId,
+      hospitalID: hospitalID,
       policyID: policy,
       claimProof: proof,
+      amount: amount,
       status: 'PENDING'
     };
     try {
@@ -72,6 +78,14 @@ const CitizenDashboard = () => {
     } catch (error) {
       console.error('Error fetching the citizen data:', error);
     }
+
+    try {
+      const result = await transfer(userId, hospitalID, amount);
+      setResult(result); 
+    } catch (error) {
+      console.error("Error during transfer:", error.message);
+    }
+
   }
 
   useEffect(() => {
@@ -121,8 +135,15 @@ const CitizenDashboard = () => {
                   </select>
                 </label>
                 <br />
+                <label> Hopital ID :
+                  <input type="number" value={hospitalID} onChange={(e) => setHospitalID(e.target.value)} required placeholder="Enter Hospital ID" />
+                </label>
                 <label> Proof :
                   <input type="text" value={proof} onChange={(e) => setProof(e.target.value)} required placeholder="Enter proof details" />
+                </label>
+                <br />
+                <label> Amount :
+                  <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} required placeholder="Enter amount" />
                 </label>
                 <br />
                 <button type="submit">Click Here to Submit Claim</button>
