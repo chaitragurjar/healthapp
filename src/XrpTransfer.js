@@ -3,9 +3,9 @@ import * as xrpl from "xrpl";
 
 const XrpTransferWithForm = () => {
   const [status, setStatus] = useState("");
-  const [senderSecret, setSenderSecret] = useState(""); // Sender Wallet Secret
-  const [receiverAddress, setReceiverAddress] = useState(""); // Receiver Wallet Address
-  const [amount, setAmount] = useState("10"); // Default amount
+  const [senderSecret, setSenderSecret] = useState(""); 
+  const [receiverAddress, setReceiverAddress] = useState(""); 
+  const [amount, setAmount] = useState("10"); 
   const [transactionResult, setTransactionResult] = useState(null);
 
   const handleTransfer = async () => {

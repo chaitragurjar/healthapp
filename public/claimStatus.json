@@ -1,0 +1,46 @@
+{
+  "claimStatus": [
+    {
+      "patientID": 1,
+      "policyID": "PM-JAY",
+      "claimProof": "1234",
+      "status": "APPROVED"
+    },
+    {
+      "patientID": 1,
+      "policyID": "MH-JAY",
+      "claimProof": "something",
+      "status": "PENDING"
+    },
+    {
+      "patientID": 1,
+      "policyID": "MH-JAY",
+      "claimProof": "something",
+      "status": "PENDING"
+    },
+    {
+      "patientID": 1,
+      "policyID": "MH-JAY",
+      "claimProof": "card",
+      "status": "PENDING"
+    },
+    {
+      "patientID": 1,
+      "policyID": "PM-JAY",
+      "claimProof": "aadhar",
+      "status": "APPROVED"
+    },
+    {
+      "patientID": 1,
+      "policyID": "MH-JAY",
+      "claimProof": "passport",
+      "status": "PENDING"
+    },
+    {
+      "patientID": 3,
+      "policyID": "PM-JAY",
+      "claimProof": "aadhar",
+      "status": "PENDING"
+    }
+  ]
+}

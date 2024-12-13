@@ -1,0 +1,20 @@
+{
+    "patientPolicyMapping": [
+      {
+        "patientID": 1,
+        "policyID": "PM-JAY",
+        "limitAvailable": 500000
+      },
+      {
+        "patientID": 1,
+        "policyID": "MH-JAY",
+        "limitAvailable": 700000
+      },
+      {
+        "patientID": 2,
+        "policyID": "PM-JAY",
+        "limitAvailable": 300000
+      }
+    ]
+  }
+  

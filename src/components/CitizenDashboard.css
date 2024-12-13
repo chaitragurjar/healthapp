@@ -1,0 +1,128 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.CitizenDashboard{
+    background: linear-gradient(to right, #fbf8cc, #fbf8cc);
+    font-family: Poppins;
+    min-height: 100vh;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+    margin: 2rem;
+    text-emphasis-color: white;
+    font-family: "Playfair Display", serif;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #8eecf5;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+    box-sizing: border-box;
+  }
+
+  button a {
+    color: black;
+    text-decoration: none;
+    display: block;
+  }
+
+  button:hover {
+    background-color: #90dbf4;
+  }
+
+  .citizen-card-container{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.citizen-card{
+    background: white;
+    padding: 1rem 2rem;
+    width: 150vh;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    /* text-align: center; */
+}
+
+.citizen-card h2{
+    text-align: center;
+}
+
+.citizen-card p{
+    padding-top: 2rem;
+    line-height: 150%;
+    text-align: justify;
+}
+
+.claims {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.policies {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+.policy-item {
+  flex: 1 1 30%;
+  margin: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pending {
+  flex: 1 1 30%;
+  margin: 1rem;
+  padding: 1rem;
+  background: #fde2e4;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.approved {
+  flex: 1 1 30%;
+  margin: 1rem;
+  padding: 1rem;
+  background: #e2ece9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label input{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    width: 90%;
+  }
+
+  form label select{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    width: 90%;
+  }
