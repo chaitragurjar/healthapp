@@ -19,22 +19,41 @@ const HomePage = () => {
   const [result, setResult] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleCitizen = async (event) => {
     event.preventDefault();
     try {
       const response = await fetch('/users.json');
       console.log(response)
       const data = await response.json();
       const users = data.users;
-      const user = users.find(u => u.username === username && u.password === password);
+      const user = users.find(u => u.type === "patient" && u.username === username && u.password === password);
 
       if (user) {
-        navigate('/citizen-dashboard', { state: { username } });
+        navigate('/citizen-dashboard', { state: { userId: user.id } });
         setResult('Login successful!');
-        console.log('Login Successful');
       } else {
-        setResult('Login failed. Incorrect username or password.');
-        console.log('Login Failed');
+        setResult('Login failed. Incorrect username or password for Patient.');
+      }
+    } catch (error) {
+      console.error('Error fetching the users:', error);
+      setResult('An error occurred while trying to log in.');
+    }
+  }
+
+  const handleHospital = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch('/users.json');
+      console.log(response)
+      const data = await response.json();
+      const users = data.users;
+      const user = users.find(u => u.type === "hospital" && u.username === username && u.password === password);
+
+      if (user) {
+        navigate('/hospital-dashboard', { state: { userId: user.id } });
+        setResult('Login successful!');
+      } else {
+        setResult('Login failed. Incorrect username or password for Hospital.');
       }
     } catch (error) {
       console.error('Error fetching the users:', error);
@@ -61,10 +80,8 @@ const HomePage = () => {
             </motion.h2>
             {citizenOpen &&
               (<motion.div className='expand'>
-                <p>
-                  Hey citizen! We are here to help you with your policy details, claim filings and tracking.
-                </p>
-                <form onSubmit={handleSubmit}>
+                <p> Hey citizen! We are here to help you with your policy details, claim filings and tracking. </p>
+                <form onSubmit={handleCitizen}>
                   <label> Username:  
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                   </label>
@@ -80,19 +97,26 @@ const HomePage = () => {
             }
           </motion.div>
 
-          <motion.div layout onClick={() => setHospitalOpen(!hospitalOpen)} className='card'>
-            <motion.h2 layout='position'>
+          <motion.div layout  className='card'>
+            <motion.h2 layout='position' onClick={() => setHospitalOpen(!hospitalOpen)}>
               <img src={hospital} alt="Icon" style={{ width: '40px', marginRight: '10px' }} />
               This is the Hospital
             </motion.h2>
             {hospitalOpen &&
               (<motion.div className='expand'>
-                <p>
-                  We help you verify patient eligibility, submit treatment details and check status of claims. Patients first!
-                </p>
-                <p>
-                  <button><Link to="/hospital-dashboard">Click Here to Login</Link></button>
-                </p>
+                <p> We help you verify patient eligibility, submit treatment details and check status of claims. Patients first! </p>
+                <form onSubmit={handleHospital}>
+                  <label> Username:  
+                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                  </label>
+                  <br />
+                  <label> Password:  
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                  </label>
+                  <br />
+                  <button type="submit">Click Here to Login</button>
+                </form>
+                <p>{result}</p>
               </motion.div>)
             }
           </motion.div>
@@ -104,12 +128,8 @@ const HomePage = () => {
             </motion.h2>
             {adminOpen &&
               (<motion.div className='expand'>
-                <p>
-                  Turn these wheels to watch claims, generate reports and manage policies.
-                </p>
-                <p>
-                  <button><Link to="/admin-dashboard">Click Here to Login</Link></button>
-                </p>
+                <p> Turn these wheels to watch claims, generate reports and manage policies. </p>
+                <p> <button><Link to="/admin-dashboard">Click Here to Login</Link></button> </p>
               </motion.div>)
             }
           </motion.div>

@@ -1,0 +1,47 @@
+{
+    "patients": [
+      {
+        "patientID": 1,
+        "name": "Aarav Sharma",
+        "secret": "sEdVPc8bGtVntt9vwqmVZarLw4beM5t",
+        "address": "rpXJQ6UXUH4VYvFwRwrd3vT2VetVoJEYfo"
+      },
+      {
+        "patientID": 2,
+        "name": "Ananya Verma",
+        "secret": "sEdS5HGXs9KTX1DHBzgoXn3HteL5HEy",
+        "address": "rsemfYL3dUkQTU3C8mJ7NnaSz5w2396vrz"
+      },
+      {
+        "patientID": 3,
+        "name": "Ishaan Mehta",
+        "secret": "sEd7WZrac2Xvvwi5Lxb5wSKasZeTMoi",
+        "address": "r1zTd4juxdUYRGH7XDMBe58ZWXiV5xfgU"
+      },
+      {
+        "patientID": 4,
+        "name": "Sanya Gupta",
+        "secret": "sEd7cBCeKAuzUSr8SqXkarBgL5zr22y",
+        "address": "r4wJn1eXHpyM8VEa931YLHQ1kMNcpZwhUZ"
+      },
+      {
+        "patientID": 5,
+        "name": "Vivaan Kapoor",
+        "secret": "sEdThZmzUsvWGjnWWfCkM1rwNzNTWWQ",
+        "address": "rfrt83aihaK6F4K8E8SUYU8C8pr9yJLcvD"
+      },
+      {
+        "patientID": 6,
+        "name": "test1",
+        "secret": "sEd7ZfowExqGYRP62zsTddXi6aLVCzi",
+        "address": "rhiNZsw8x4xaMe1BFjZNpgHiwr1PUhxwF8"
+      },
+      {
+        "patientID": 7,
+        "name": "test2",
+        "secret": "sEdTkULbJa6FPWdD9Kv17m6S4GSMQhB",
+        "address": "r4cDyFYnxjnUec1isQoxtTdfPh5uYRumeJ"
+      }
+    ]
+  }
+  

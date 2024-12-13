@@ -1,12 +1,46 @@
 {
-    "users": [
-      {
-        "username": "user1",
-        "password": "password1"
-      },
-      {
-        "username": "user2",
-        "password": "password2"
-      }
-    ]
-  }
+  "users": [
+    {
+      "type": "patient",
+      "id": 1,
+      "username": "aarav",
+      "password": "aarav"
+    },
+    {
+      "type": "patient",
+      "id": 2,
+      "username": "ananya",
+      "password": "ananya"
+    },
+    {
+      "type": "patient",
+      "id": 3,
+      "username": "ishaan",
+      "password": "ishaan"
+    },
+    {
+      "type": "patient",
+      "id": 4,
+      "username": "sanya",
+      "password": "sanya"
+    },
+    {
+      "type": "patient",
+      "id": 5,
+      "username": "vivaan",
+      "password": "vivaan"
+    },
+    {
+      "type": "hospital",
+      "id": 1,
+      "username": "fortis",
+      "password": "fortis"
+    },
+    {
+      "type": "hospital",
+      "id": 2,
+      "username": "aiims",
+      "password": "aiims"
+    }
+  ]
+}

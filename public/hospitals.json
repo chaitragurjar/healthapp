@@ -1,0 +1,16 @@
+{
+    "hospitals": [
+      {
+        "hospitalID": 1,
+        "name": "Fortis Hospital",
+        "secret": "sEdTeReK3qLcj9Mj6Ycoz3XdffmCH2x",
+        "address": "rtVqVB9sznh64mucWghuASHEWAvAeqkc4"
+      },
+      {
+        "hospitalID": 2,
+        "name": "AIIMS Delhi",
+        "secret": "sEdSyMn4GQHAJ7np8EGtV4vQivxEsEP",
+        "address": "r4DXyP1Z9PQY2rFZZqvedJxzh9yoNYLytS"
+      }
+    ]
+  }
