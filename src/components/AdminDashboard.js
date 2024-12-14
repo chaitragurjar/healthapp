@@ -17,6 +17,7 @@ const AdminDashboard = () => {
   const [admin, setAdmin] = useState([]);
   const [validationResults, setValidationResults] = useState({});
   const [result, setResult] = useState('');
+  const [loading, setLoading] = useState({});
 
   useEffect(() => {
     const fetchAdminData = async () => {
@@ -53,12 +54,22 @@ const AdminDashboard = () => {
   };
 
   const handleValidate = async (index, claim) => {
-    const isValid = await validateTransaction(claim.claimProof, claim.patientID, claim.hospitalID, claim.amount);
+    // const isValid = await validateTransaction(claim.claimProof, claim.patientID, claim.hospitalID, claim.amount);
     // change button to show validation result
-    setValidationResults(prevResults => ({
-      ...prevResults,
-      [index]: isValid ? 'Valid' : 'Invalid'
-    }));
+    // setValidationResults(prevResults => ({
+    //   ...prevResults,
+    //   [index]: isValid ? 'Valid' : 'Invalid'
+    // }));
+    setLoading(prev => ({ ...prev, [index]: true }));
+    try {
+      const isValid = await validateTransaction(claim.claimProof, claim.patientID, claim.hospitalID, claim.amount);
+      setValidationResults(prev => ({ ...prev, [index]: isValid ? 'Valid' : 'Invalid' }));
+    } catch (error) {
+      setValidationResults(prev => ({ ...prev, [index]: 'Invalid' }));
+      console.log("error is " + error);
+    } finally {
+      setLoading(prev => ({ ...prev, [index]: false })); // Set loading state to false
+    }
   };
 
   const handleApprove = async (index, claim) => {
@@ -125,18 +136,31 @@ const AdminDashboard = () => {
           (<motion.div className='expand'>
             <ul className='claims'>
               {claims.map((claim, index) => (
-                <li key={index} className={`claim-item ${claim.status === 'PENDING' ? 'pending' : 'approved'}`}>
-                  <p>Policy ID: {claim.policyID}</p>
-                  <p>Claim Proof: {claim.claimProof}</p>
-                  <p>Amount: {claim.amount}</p>
-                  <p>Status: {claim.status}</p>
+                <li key={index} className={`claim-item 
+                    ${claim.status === 'PENDING' ? 'pending' : ''} 
+                    ${claim.status === 'APPROVED' ? 'approved' : ''} 
+                    ${claim.status === 'REJECTED' ? 'rejected' : ''}`}>
+                  <p>POLICY : {claim.policyID}</p>
+                  <p>PROOF {claim.claimProof}</p>
+                  <p>AMOUNT : {claim.amount}</p>
+                  <p>STATUS : {claim.status}</p>
 
                   {claim.status === 'PENDING' && (
                     <button 
                       onClick={() => handleValidate(index, claim)}
                       disabled={!!validationResults[index]} 
+                      style={{
+                        backgroundColor: loading[index]
+                          ? '#FEEE91'
+                          : validationResults[index] === 'Valid'
+                          ? '#5DB996'
+                          : validationResults[index] === 'Invalid'
+                          ? '#CC2B52'
+                          : ''
+                      }}
                     >
-                      {validationResults[index] || 'Validate XRPL'}
+                      {/* {validationResults[index] || 'Validate XRPL'} */}
+                      {loading[index] ? 'Processing...' : validationResults[index] || 'Validate XRPL'}
                     </button>
                   )}
 

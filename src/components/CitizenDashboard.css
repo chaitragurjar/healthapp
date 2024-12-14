@@ -97,6 +97,8 @@ button {
 
 .pending {
   flex: 1 1 30%;
+  max-width: 31%;
+  word-wrap: break-word;
   margin: 1rem;
   padding: 1rem;
   background: #fff1e6;
@@ -106,6 +108,8 @@ button {
 
 .approved {
   flex: 1 1 30%;
+  max-width: 31%;
+  word-wrap: break-word;
   margin: 1rem;
   padding: 1rem;
   background: #e2ece9;
@@ -115,6 +119,8 @@ button {
 
 .rejected {
   flex: 1 1 30%;
+  max-width: 31%;
+  word-wrap: break-word;
   margin: 1rem;
   padding: 1rem;
   background: #fde2e4;

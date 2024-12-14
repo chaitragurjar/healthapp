@@ -12,9 +12,9 @@
       "patientID": 1,
       "hospitalID": 1,
       "policyID": "PM-JAY",
-      "claimProof": "7852",
+      "claimProof": "E5E8F25BD3F03111F31D70D7A62EC263FA9AD736E4F9B4692A397D8FD49B7C58",
       "amount": 30,
-      "status": "PENDING"
+      "status": "REJECTED"
     },
     {
       "patientID": 1,

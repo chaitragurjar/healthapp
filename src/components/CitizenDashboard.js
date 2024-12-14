@@ -159,11 +159,11 @@ const CitizenDashboard = () => {
                     ${claim.status === 'PENDING' ? 'pending' : ''} 
                     ${claim.status === 'APPROVED' ? 'approved' : ''} 
                     ${claim.status === 'REJECTED' ? 'rejected' : ''}`}>
-                    <p>Policy ID: {claim.policyID}</p>
-                    <p>Hospital ID: {claim.hospitalID}</p>
-                    <p>Claim Proof: {claim.claimProof}</p>
-                    <p>Amount: {claim.amount}</p>
-                    <p>Status: {claim.status}</p>
+                    <p>POLICY : {claim.policyID}</p>
+                    <p>HOSPITAL ID : {claim.hospitalID}</p>
+                    <p>PROOF {claim.claimProof}</p>
+                    <p>AMOUNT : {claim.amount}</p>
+                    <p>STATUS : {claim.status}</p>
                   </li>
                 ))}
               </ul>
