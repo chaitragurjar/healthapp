@@ -1,16 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion'
 import './AdminDashboard.css';
 import { updateJsonData } from '../functionality/createClaim';
 import { transfer } from '../functionality/transferMoney';
 import { validateTransaction } from '../functionality/validateHash';
+import approve from '../static/approve.png'
 
 const AdminDashboard = () => {
 
   const location = useLocation();
+  const navigate = useNavigate();
   const { userId } = location.state || { userId: null };
   const [statusOpen, setStatusOpen] = useState(false);
   const [claims, setClaims] = useState([]);
@@ -117,8 +119,14 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleLogout = () => {
+    navigate('/');
+  };
+
   return (
     <div className='AdminDashboard'>
+
+      <button onClick={handleLogout} className="logout-button">Logout</button>
 
       <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet" />
@@ -130,6 +138,7 @@ const AdminDashboard = () => {
 
       <motion.div layout className='admin-card'>
         <motion.h2 layout='position' onClick={trackClaims}>
+          <img src={approve} alt="Icon" style={{ width: '40px', marginRight: '10px' }} />
           Real-Time Claims
         </motion.h2>
         {statusOpen &&

@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion'
 import { updateJsonData } from '../functionality/createClaim';
 import { transfer } from '../functionality/transferMoney';
 import './CitizenDashboard.css';
+import fileclaim from '../static/fileclaim.png';
+import trackclaim from '../static/trackclaim.png';
+import limit from '../static/limit.png'
 
 const CitizenDashboard = () => {
 
   const location = useLocation();
+  const navigate = useNavigate();
   const { userId } = location.state || { userId: null };
   const [citizenName, setCitizenName] = useState('');
   const [claimOpen, setClaimOpen] = useState(false);
@@ -18,10 +23,12 @@ const CitizenDashboard = () => {
   const [policy, setPolicy] = useState('');
   const [proof, setProof] = useState('');
   const [hospitalID, setHospitalID] = useState('');
+  const [hospitalName, setHospitalName] = useState('');
   const [amount, setAmount] = useState('');
   const [result, setResult] = useState('');
   const [claims, setClaims] = useState([]);
   const [policies, setPolicies] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchClaims = async () => {
     try {
@@ -62,29 +69,36 @@ const CitizenDashboard = () => {
 
   const submitClaim = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
     try {
       const proof = await transfer(userId, parseInt(hospitalID, 10), amount);
       setProof(proof); 
+      
       console.log("Funds transferred successfully:", proof);
     
       const newEntry = {
         patientID: userId,
-        hospitalID: parseInt(hospitalID, 10),
+        hospitalID: hospitalID,
         policyID: policy,
         claimProof: proof,
         amount: parseInt(amount,10),
         status: 'PENDING'
       };
+      console.log(newEntry)
     
       const updatedJson = updateJsonData(newEntry);
       setResult('Claim submitted successfully! ' + proof);
       console.log('Updated JSON:', updatedJson);
+      setIsSubmitting(false);
     } catch (error) {
       console.error("Error during the process:", error.message);
+      setIsSubmitting(false);
     }
   }
 
   useEffect(() => {
+    const hospitalID = Math.random() < 0.5 ? 1 : 2;
+    setHospitalID(hospitalID);
     const fetchCitizenData = async () => {
       try {
         const response = await fetch('/patients.json');
@@ -104,8 +118,14 @@ const CitizenDashboard = () => {
     }
   }, [userId]);
 
+  const handleLogout = () => {
+    navigate('/');
+  };
+
   return (
     <div className='CitizenDashboard'>
+
+      <button onClick={handleLogout} className="logout-button">Logout</button>
 
       <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet" />
@@ -118,6 +138,7 @@ const CitizenDashboard = () => {
       <div className="citizen-card-container">
         <motion.div layout className='citizen-card'>
           <motion.h2 layout='position' onClick={() => setClaimOpen(!claimOpen)}>
+            <img src={fileclaim} alt="Icon" style={{ width: '30px', marginRight: '10px' }} />
             File a Claim
           </motion.h2>
           {claimOpen &&
@@ -132,7 +153,14 @@ const CitizenDashboard = () => {
                 </label>
                 <br />
                 <label> Hopital ID :
-                  <input type="number" value={hospitalID} onChange={(e) => setHospitalID(e.target.value)} required placeholder="Enter Hospital ID" />
+                  <select value={hospitalName} onChange={(e) => setHospitalName(e.target.value)} required>
+                    <option value="" disabled>Select a Hospital</option>
+                    <option value="Fortis Mumbai">Fortis Research Mumbai</option>
+                    <option value="Hiranandani Mumbai">Hiranandani Hospital Mumbai</option>
+                    <option value="AIIMS Delhi">AIIMS Delhi</option>
+                    <option value="Apollo Bangalore">Apollo HealthCare Bangalore</option>
+                  </select>
+                  {/* <input type="number" value={hospitalID} onChange={(e) => setHospitalID(e.target.value)} required placeholder="Enter Hospital ID" /> */}
                 </label>
                
                 <br />
@@ -140,7 +168,9 @@ const CitizenDashboard = () => {
                   <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} required placeholder="Enter amount" />
                 </label>
                 <br />
-                <button type="submit">Click Here to Pay and Submit Claim</button>
+                <button type="submit" style={{ backgroundColor: isSubmitting ? '#FEEE91' : '#8eecf5' }} >
+                  {isSubmitting ? 'Processing...' : 'Click Here to Pay and Submit Claim'}
+                </button>
               </form>
               {result && <p>{result}</p>}
             </motion.div>)
@@ -149,6 +179,7 @@ const CitizenDashboard = () => {
 
         <motion.div layout className='citizen-card'>
           <motion.h2 layout='position' onClick={trackClaims}>
+          <img src={trackclaim} alt="Icon" style={{ width: '30px', marginRight: '10px' }} />
             Track Claims
           </motion.h2>
           {statusOpen &&
@@ -173,6 +204,7 @@ const CitizenDashboard = () => {
 
         <motion.div layout className='citizen-card'>
           <motion.h2 layout='position' onClick={policyStatus}>
+            <img src={limit} alt="Icon" style={{ width: '30px', marginRight: '10px' }} />
             Check Policy Status
           </motion.h2>
           {policyOpen &&
