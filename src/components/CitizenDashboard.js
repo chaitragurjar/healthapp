@@ -50,14 +50,35 @@ const CitizenDashboard = () => {
 
   const fetchPolicy = async () => {
     try {
+      // Fetch policy mapping
       const response = await fetch('/policyMapping.json');
-      const data = await response.json();
-      const userPolicies = data.patientPolicyMapping.filter(claim => claim.patientID === userId);
-      setPolicies(userPolicies);
+      const policyData = await response.json();
+      const userPolicies = policyData.patientPolicyMapping.filter(policy => policy.patientID === userId);
+  
+      // Fetch claim status data
+      const claimsResponse = await fetch('/claimStatus.json');
+      const claimsData = await claimsResponse.json();
+  
+      // Calculate approved amount for each policy
+      const policyApprovedAmounts = claimsData.claimStatus.reduce((acc, claim) => {
+        if (claim.patientID === userId && claim.status === 'APPROVED') {
+          acc[claim.policyID] = (acc[claim.policyID] || 0) + claim.amount;
+        }
+        return acc;
+      }, {});
+  
+      // Add approved amount to user policies
+      const enrichedPolicies = userPolicies.map(policy => ({
+        ...policy,
+        approvedAmount: policyApprovedAmounts[policy.policyID] || 0,
+      }));
+  
+      setPolicies(enrichedPolicies);
     } catch (error) {
-      console.error('Error fetching claims:', error);
+      console.error('Error fetching policies or claims:', error);
     }
   };
+  
 
   const policyStatus = () => {
     setPolicyOpen(!policyOpen);
@@ -213,7 +234,8 @@ const CitizenDashboard = () => {
                 {policies.map((policy, ind) => (
                   <li key={ind} className="policy-item">
                     <p>Policy: {policy.policyID}</p>
-                    <p>Balance: {policy.limitAvailable}</p>
+                    <p>Total Limit: &#8377;{policy.limitAvailable}</p>
+                    <p>Available: &#8377;{policy.limitAvailable - policy.approvedAmount}</p>
                   </li>
                 ))}
               </ul>

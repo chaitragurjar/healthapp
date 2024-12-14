@@ -1,0 +1,102 @@
+/* ClaimStats.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  .dashboard {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-title {
+    text-align: center;
+    font-size: 24px;
+    color: #4a90e2;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    margin-bottom: 30px;
+  }
+  
+  .card {
+    flex: 1;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h3 {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #4a90e2;
+  }
+  
+  .card p {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .policy-section {
+    margin-top: 30px;
+  }
+  
+  .policy-section h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .policy-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fafafa;
+  }
+  
+  .policy-table th,
+  .policy-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .policy-table th {
+    background: #4a90e2;
+    color: #ffffff;
+  }
+  
+  .policy-table tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .loading {
+    color: #4a90e2;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

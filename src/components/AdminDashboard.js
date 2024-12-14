@@ -8,6 +8,7 @@ import { updateJsonData } from '../functionality/createClaim';
 import { transfer } from '../functionality/transferMoney';
 import { validateTransaction } from '../functionality/validateHash';
 import approve from '../static/approve.png'
+import ClaimStats from './DisplayStats';
 
 const AdminDashboard = () => {
 
@@ -186,7 +187,8 @@ const AdminDashboard = () => {
           </motion.div>)
         }
       </motion.div>
-
+      
+      <ClaimStats></ClaimStats>
       {/* <h1>Admin Dashboard</h1>
       <button><Link to="/admin/reports">Check Claims Status</Link></button>
       <button><Link to="/admin/reports">Generate Reports</Link></button> */}

@@ -54,7 +54,7 @@
       "policyID": "MH-JAY",
       "claimProof": "BBCC9B0B22A9841E574AA00E44909C649E88498E04EFD1E995E610C1A8A638B9",
       "amount": 2,
-      "status": "PENDING"
+      "status": "APPROVED"
     },
     {
       "patientID": 1,
@@ -70,7 +70,7 @@
       "policyID": "MH-JAY",
       "claimProof": "298E16B5FBE3882050F97EE910B72C961641A3BEC46776E96846F9C948D1DAD0",
       "amount": 3,
-      "status": "PENDING"
+      "status": "APPROVED"
     },
     {
       "patientID": 5,
