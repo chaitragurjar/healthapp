@@ -62,30 +62,26 @@ const CitizenDashboard = () => {
 
   const submitClaim = async (event) => {
     event.preventDefault();
-
-    const newEntry = {
-      patientID: userId,
-      hospitalID: hospitalID,
-      policyID: policy,
-      claimProof: proof,
-      amount: amount,
-      status: 'PENDING'
-    };
     try {
+      const proof = await transfer(userId, parseInt(hospitalID, 10), amount);
+      setProof(proof); 
+      console.log("Funds transferred successfully:", proof);
+    
+      const newEntry = {
+        patientID: userId,
+        hospitalID: parseInt(hospitalID, 10),
+        policyID: policy,
+        claimProof: proof,
+        amount: parseInt(amount,10),
+        status: 'PENDING'
+      };
+    
       const updatedJson = updateJsonData(newEntry);
-      setResult('Claim submitted successfully!');
+      setResult('Claim submitted successfully! ' + proof);
       console.log('Updated JSON:', updatedJson);
     } catch (error) {
-      console.error('Error fetching the citizen data:', error);
+      console.error("Error during the process:", error.message);
     }
-
-    try {
-      const result = await transfer(userId, hospitalID, amount);
-      setResult(result); 
-    } catch (error) {
-      console.error("Error during transfer:", error.message);
-    }
-
   }
 
   useEffect(() => {
@@ -138,15 +134,13 @@ const CitizenDashboard = () => {
                 <label> Hopital ID :
                   <input type="number" value={hospitalID} onChange={(e) => setHospitalID(e.target.value)} required placeholder="Enter Hospital ID" />
                 </label>
-                <label> Proof :
-                  <input type="text" value={proof} onChange={(e) => setProof(e.target.value)} required placeholder="Enter proof details" />
-                </label>
+               
                 <br />
                 <label> Amount :
                   <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} required placeholder="Enter amount" />
                 </label>
                 <br />
-                <button type="submit">Click Here to Submit Claim</button>
+                <button type="submit">Click Here to Pay and Submit Claim</button>
               </form>
               {result && <p>{result}</p>}
             </motion.div>)

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import './AdminDashboard.css';
 import { updateJsonData } from '../functionality/createClaim';
 import { transfer } from '../functionality/transferMoney';
-// import { validateTransaction } from '../functionality/validateHash';
+import { validateTransaction } from '../functionality/validateHash';
 
 const AdminDashboard = () => {
 
@@ -50,6 +50,15 @@ const AdminDashboard = () => {
     if (!statusOpen) {
       fetchClaims();
     }
+  };
+
+  const handleValidate = async (index, claim) => {
+    const isValid = await validateTransaction(claim.claimProof, claim.patientID, claim.hospitalID, claim.amount);
+    // change button to show validation result
+    setValidationResults(prevResults => ({
+      ...prevResults,
+      [index]: isValid ? 'Valid' : 'Invalid'
+    }));
   };
 
   const handleApprove = async (index, claim) => {
@@ -121,6 +130,15 @@ const AdminDashboard = () => {
                   <p>Claim Proof: {claim.claimProof}</p>
                   <p>Amount: {claim.amount}</p>
                   <p>Status: {claim.status}</p>
+
+                  {claim.status === 'PENDING' && (
+                    <button 
+                      onClick={() => handleValidate(index, claim)}
+                      disabled={!!validationResults[index]} 
+                    >
+                      {validationResults[index] || 'Validate XRPL'}
+                    </button>
+                  )}
 
                   {claim.status === 'PENDING' && (
                     <button onClick={() => handleApprove(index, claim)}>Approve</button>

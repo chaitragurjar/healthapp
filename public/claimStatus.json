@@ -23,6 +23,30 @@
       "claimProof": "5468",
       "amount": 20,
       "status": "REJECTED"
+    },
+    {
+      "patientID": 5,
+      "hospitalID": 2,
+      "policyID": "PM-JAY",
+      "claimProof": "E5E8F25BD3F03111F31D70D7A62EC263FA9AD736E4F9B4692A397D8FD49B7C58",
+      "amount": 7,
+      "status": "PENDING"
+    },
+    {
+      "patientID": 4,
+      "hospitalID": 2,
+      "policyID": "PM-JAY",
+      "claimProof": "FDC7BFCB3C48718CB1E154758571BC2DD1B1305D6076655823A690C501AB851C",
+      "amount": 1,
+      "status": "PENDING"
+    },
+    {
+      "patientID": 4,
+      "hospitalID": 1,
+      "policyID": "PM-JAY",
+      "claimProof": "B6C72A42E0991D55F4A6F447DE15CC1E827193EA08324B2FE2A2D51E1DDDD622",
+      "amount": 1,
+      "status": "PENDING"
     }
   ]
 }
