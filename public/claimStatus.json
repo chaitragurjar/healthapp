@@ -17,14 +17,6 @@
       "status": "REJECTED"
     },
     {
-      "patientID": 1,
-      "hospitalID": 1,
-      "policyID": "MH-JAY",
-      "claimProof": "5468",
-      "amount": 20,
-      "status": "REJECTED"
-    },
-    {
       "patientID": 5,
       "hospitalID": 2,
       "policyID": "PM-JAY",
@@ -65,19 +57,27 @@
       "status": "PENDING"
     },
     {
-      "patientID": 2,
-      "hospitalID": 1,
-      "policyID": "MH-JAY",
-      "claimProof": "298E16B5FBE3882050F97EE910B72C961641A3BEC46776E96846F9C948D1DAD0",
-      "amount": 3,
-      "status": "APPROVED"
-    },
-    {
       "patientID": 5,
       "hospitalID": 1,
       "policyID": "MH-JAY",
       "claimProof": "55CCBF110906E70702B28C624192F31B9913BEE180BCDAA895BB73D4DE59A2E8",
       "amount": 5,
+      "status": "PENDING"
+    },
+    {
+      "patientID": 2,
+      "hospitalID": 2,
+      "policyID": "PM-JAY",
+      "claimProof": "8D5A1856E71202B70CE52B7EEC3C9896C0DEB092F68F1D56021AFB90E6787E14",
+      "amount": 6,
+      "status": "PENDING"
+    },
+    {
+      "patientID": 1,
+      "hospitalID": 1,
+      "policyID": "MH-JAY",
+      "claimProof": "6048DF9E2AA4B25D478D1B1D7EB432B2A4F82D29FCA3A7AB0559049BFC668CCF",
+      "amount": 1,
       "status": "PENDING"
     }
   ]
