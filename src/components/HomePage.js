@@ -94,8 +94,11 @@ const HomePage = () => {
         </motion.div>
 
         <div className="card-container">
-          <motion.div layout  className='card'>
-            <motion.h2 layout='position' onClick={() => setCitizenOpen(!citizenOpen)}>
+          <motion.div layout className='card'>
+            <motion.h2 layout='position' onClick={() => {
+              setCitizenOpen(!citizenOpen);
+              setAdminOpen(false);
+            }}>
               <img src={citizen} alt="Icon" style={{ width: '30px', marginRight: '10px' }} />
               I am a Citizen
             </motion.h2>
@@ -103,11 +106,11 @@ const HomePage = () => {
               (<motion.div className='expand'>
                 <p> Hey citizen! We are here to help you with your policy details, claim filings and tracking. </p>
                 <form onSubmit={handleCitizen}>
-                  <label> Username:  
+                  <label> Username:
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                   </label>
                   <br />
-                  <label> Password:  
+                  <label> Password:
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                   </label>
                   <br />
@@ -118,7 +121,7 @@ const HomePage = () => {
             }
           </motion.div>
 
-          <motion.div layout  className='card'>
+          {/* <motion.div layout  className='card'>
             <motion.h2 layout='position' onClick={() => setHospitalOpen(!hospitalOpen)}>
               <img src={hospital} alt="Icon" style={{ width: '40px', marginRight: '10px' }} />
               This is the Hospital
@@ -140,10 +143,13 @@ const HomePage = () => {
                 <p>{result}</p>
               </motion.div>)
             }
-          </motion.div>
+          </motion.div> */}
 
-          <motion.div layout  className='card'>
-            <motion.h2 layout='position' onClick={() => setAdminOpen(!adminOpen)}>
+          <motion.div layout className='card'>
+            <motion.h2 layout='position' onClick={() => {
+              setAdminOpen(!adminOpen);
+              setCitizenOpen(false);
+            }}>
               <img src={admin} alt="Icon" style={{ width: '35px', marginRight: '10px' }} />
               Administrator
             </motion.h2>
@@ -151,11 +157,11 @@ const HomePage = () => {
               (<motion.div className='expand'>
                 <p> Turn these wheels to watch claims, generate reports and manage policies. </p>
                 <form onSubmit={handleAdmin}>
-                  <label> Username:  
+                  <label> Username:
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                   </label>
                   <br />
-                  <label> Password:  
+                  <label> Password:
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                   </label>
                   <br />
