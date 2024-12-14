@@ -48,18 +48,16 @@ const CitizenDashboard = () => {
     }
   };
 
+  
+
   const fetchPolicy = async () => {
     try {
-      // Fetch policy mapping
       const response = await fetch('/policyMapping.json');
       const policyData = await response.json();
       const userPolicies = policyData.patientPolicyMapping.filter(policy => policy.patientID === userId);
   
-      // Fetch claim status data
       const claimsResponse = await fetch('/claimStatus.json');
       const claimsData = await claimsResponse.json();
-  
-      // Calculate approved amount for each policy
       const policyApprovedAmounts = claimsData.claimStatus.reduce((acc, claim) => {
         if (claim.patientID === userId && claim.status === 'APPROVED') {
           acc[claim.policyID] = (acc[claim.policyID] || 0) + claim.amount;
@@ -67,7 +65,6 @@ const CitizenDashboard = () => {
         return acc;
       }, {});
   
-      // Add approved amount to user policies
       const enrichedPolicies = userPolicies.map(policy => ({
         ...policy,
         approvedAmount: policyApprovedAmounts[policy.policyID] || 0,

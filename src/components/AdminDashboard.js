@@ -39,15 +39,65 @@ const AdminDashboard = () => {
 
   const fetchClaims = async () => {
     try {
-      console.log(admin)
-      const response = await fetch('/claimStatus.json');
-      const data = await response.json();
-      const userClaims = data.claimStatus.filter(claim => claim.policyID === admin.policyID);
-      setClaims(userClaims);
+      console.log(admin);
+  
+      const [claimsResponse, policyResponse] = await Promise.all([
+        fetch('/claimStatus.json'),
+        fetch('/policyMapping.json'),
+      ]);
+  
+      const claimsData = await claimsResponse.json();
+      const policyData = await policyResponse.json();
+  
+      const userClaims = claimsData.claimStatus.filter(
+        claim => claim.policyID === admin.policyID
+      );
+  
+      const approvedAmountsByPatientAndPolicy = claimsData.claimStatus.reduce((acc, claim) => {
+        if (claim.status === 'APPROVED') {
+          const key = `${claim.patientID}_${claim.policyID}`;
+          acc[key] = (acc[key] || 0) + claim.amount;
+        }
+        return acc;
+      }, {});
+  
+      const claimsWithBalance = userClaims.map(claim => {
+        const key = `${claim.patientID}_${claim.policyID}`;
+        const approvedAmount = approvedAmountsByPatientAndPolicy[key] || 0;
+  
+        const policy = policyData.patientPolicyMapping.find(
+          p => p.patientID === claim.patientID && p.policyID === claim.policyID
+        );
+  
+        const policyLimit = policy ? policy.limitAvailable : 0;
+        const availableBalance = policyLimit - approvedAmount;
+  
+        return {
+          ...claim,
+          approvedAmount,
+          availableBalance,
+        };
+      });
+  
+      setClaims(claimsWithBalance);
     } catch (error) {
       console.error('Error fetching claims:', error);
     }
   };
+  
+
+  // const fetchClaims = async () => {
+  //   try {
+  //     console.log(admin)
+  //     const response = await fetch('/claimStatus.json');
+  //     const data = await response.json();
+  //     const userClaims = data.claimStatus.filter(claim => claim.policyID === admin.policyID);
+  //     console.log(userClaims);
+  //     setClaims(userClaims);
+  //   } catch (error) {
+  //     console.error('Error fetching claims:', error);
+  //   }
+  // };
 
   const trackClaims = () => {
     setStatusOpen(!statusOpen);
@@ -150,10 +200,15 @@ const AdminDashboard = () => {
                     ${claim.status === 'PENDING' ? 'pending' : ''} 
                     ${claim.status === 'APPROVED' ? 'approved' : ''} 
                     ${claim.status === 'REJECTED' ? 'rejected' : ''}`}>
-                  <p>POLICY : {claim.policyID}</p>
-                  <p>PROOF {claim.claimProof}</p>
-                  <p>AMOUNT : {claim.amount}</p>
-                  <p>STATUS : {claim.status}</p>
+                 <div>
+                  <p><strong>Policy ID:</strong> {claim.policyID}</p>
+                  <p><strong>Proof:</strong> {claim.claimProof}</p>
+                  <p><strong>Claim Amount:</strong> &#8377; {claim.amount}</p>
+                  <p><strong>Available Balance: </strong> &#8377; {claim.availableBalance}</p>
+                  <p><strong>Status:</strong> {claim.status}</p>
+
+                </div>
+
 
                   {claim.status === 'PENDING' && (
                     <button 
