@@ -184,7 +184,7 @@ const AdminDashboard = () => {
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"></link>
 
       <motion.div layout='position' className="header">
-        <h1>Hello, {admin.name} Administring {admin.policyID}!</h1>
+        <h1>Hello, {admin.name} Administering {admin.policyID}!</h1>
       </motion.div>
 
       <motion.div layout className='admin-card'>
