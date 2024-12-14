@@ -165,34 +165,47 @@ const CitizenDashboard = () => {
           {claimOpen &&
             (<motion.div className='expand'>
               <form onSubmit={submitClaim}>
-                <label> Policy :
-                  <select value={policy} onChange={(e) => setPolicy(e.target.value)} required>
-                    <option value="" disabled>Select a policy</option>
-                    <option value="PM-JAY">PM-JAY</option>
-                    <option value="MH-JAY">MH-JAY</option>
-                  </select>
-                </label>
-                <br />
-                <label> Hopital ID :
-                  <select value={hospitalName} onChange={(e) => setHospitalName(e.target.value)} required>
-                    <option value="" disabled>Select a Hospital</option>
-                    <option value="Fortis Mumbai">Fortis Research Mumbai</option>
-                    <option value="Hiranandani Mumbai">Hiranandani Hospital Mumbai</option>
-                    <option value="AIIMS Delhi">AIIMS Delhi</option>
-                    <option value="Apollo Bangalore">Apollo HealthCare Bangalore</option>
-                  </select>
-                  {/* <input type="number" value={hospitalID} onChange={(e) => setHospitalID(e.target.value)} required placeholder="Enter Hospital ID" /> */}
-                </label>
-               
-                <br />
-                <label> Amount :
-                  <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} required placeholder="Enter amount" />
-                </label>
-                <br />
-                <button type="submit" style={{ backgroundColor: isSubmitting ? '#FEEE91' : '#8eecf5' }} >
-                  {isSubmitting ? 'Processing...' : 'Click Here to Pay and Submit Claim'}
-                </button>
-              </form>
+              <label>
+                <strong>Policy:</strong>
+                <select value={policy} onChange={(e) => setPolicy(e.target.value)} required>
+                  <option value="" disabled>Select a policy</option>
+                  <option value="PM-JAY">PM-JAY</option>
+                  <option value="MH-JAY">MH-JAY</option>
+                </select>
+              </label>
+              <br /><br />
+
+              <label>
+                <strong>Hospital ID:</strong>
+                <select value={hospitalName} onChange={(e) => setHospitalName(e.target.value)} required>
+                  <option value="" disabled>Select a Hospital</option>
+                  <option value="Fortis Mumbai">Fortis Research Mumbai</option>
+                  <option value="Hiranandani Mumbai">Hiranandani Hospital Mumbai</option>
+                  <option value="AIIMS Delhi">AIIMS Delhi</option>
+                  <option value="Apollo Bangalore">Apollo HealthCare Bangalore</option>
+                </select>
+              </label>
+              <br /><br />
+
+              <label>
+                <strong>Amount:</strong>
+                <input 
+                  type="number" 
+                  value={amount} 
+                  onChange={(e) => setAmount(e.target.value)} 
+                  required 
+                  placeholder="Enter amount" 
+                />
+              </label>
+              <br /><br />
+
+              <button 
+                type="submit" 
+              >
+                {isSubmitting ? 'Processing...' : 'Click Here to Pay and Submit Claim'}
+              </button>
+            </form>
+
               {result && <p>{result}</p>}
             </motion.div>)
           }
@@ -211,11 +224,16 @@ const CitizenDashboard = () => {
                     ${claim.status === 'PENDING' ? 'pending' : ''} 
                     ${claim.status === 'APPROVED' ? 'approved' : ''} 
                     ${claim.status === 'REJECTED' ? 'rejected' : ''}`}>
-                    <p>POLICY : {claim.policyID}</p>
-                    <p>HOSPITAL ID : {claim.hospitalID}</p>
-                    <p>PROOF {claim.claimProof}</p>
-                    <p>AMOUNT : {claim.amount}</p>
-                    <p>STATUS : {claim.status}</p>
+                  <div className="claim-card">
+                    <h4 className="claim-policy">Policy: {claim.policyID}</h4>
+                    <div className="claim-details">
+                      <p><strong>Hospital ID:</strong> {claim.hospitalID}</p>
+                      <p><strong>Proof:</strong> {claim.claimProof}</p>
+                      <p><strong>Amount:</strong> &#8377;{claim.amount}</p>
+                      <p><strong>Status:</strong> {claim.status}</p>
+                    </div>
+                  </div>
+
                   </li>
                 ))}
               </ul>
@@ -233,10 +251,16 @@ const CitizenDashboard = () => {
               <ul className='policies'>
                 {policies.map((policy, ind) => (
                   <li key={ind} className="policy-item">
-                    <p>Policy: {policy.policyID}</p>
-                    <p>Total Limit: &#8377;{policy.limitAvailable}</p>
-                    <p>Available: &#8377;{policy.limitAvailable - policy.approvedAmount}</p>
-                  </li>
+                  <div className="policy-card">
+                    <div className="policy-header">
+                      <h3 className="policy-id">{policy.policyID} Policy</h3>
+                    </div>
+                    <div className="policy-details">
+                      <p><strong>Total Limit:</strong> &#8377;{policy.limitAvailable}</p>
+                      <p><strong>Available:</strong> &#8377;{policy.limitAvailable - policy.approvedAmount}</p>
+                    </div>
+                  </div>
+                </li>
                 ))}
               </ul>
             </motion.div>)
