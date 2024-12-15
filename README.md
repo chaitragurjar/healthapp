@@ -2,6 +2,13 @@
 
 ---
 ### Features
+#### Disadvantages of existing systems
+- **Delayed Processes**: Claim settlement and approvals take weeks or months due to manual workflows and intermediaries.
+- **Lack of Transparency**: Policyholders cannot easily track the status of claims or policy balances, leading to trust issues.
+- **High Costs**: Significant administrative and commission fees inflate the cost of providing and availing insurance.
+- **Limited Access**: Rural and underserved areas face challenges in accessing insurance due to inadequate digitization and outreach.
+- **Inefficient Policy Management**: Real-time updates on policies and claims are not available, often resulting in disputes or miscommunication.
+
 #### Citizen dashboard
 - Patient can see the policies he/she can claim and their respective balances
 - Patient can see status of the previous claims (Approved, Rejected or Pending)
@@ -20,6 +27,8 @@
   - Better map the XRP drops to INR for ease in realworld implementation
   - Better analysis for stats using AI/data analysis (fraud detection etc.)
 
+
+---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 - This project is created using Node v20.18.1
