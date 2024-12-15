@@ -1,5 +1,24 @@
 # SweChai's Health Insurance App
 
+---
+### Features
+- Patient can see the policies he/she can claim and their respective balances
+- Patient can see status of the previous claims (Approved, Rejected or Pending)
+- Patient can pay to hospital and get the proof - which can prove the sender, receiver and amount on the ledger.
+
+- Admin is assigned a specific policy
+- He/she can see all claims and can approve/ reject them.
+- Criteria for approval:
+  - The claim proof can be used to validate the txn on the blockchain
+  - Available policy balance >= claim amount
+- Stats are available - overall and policywise
+
+- Future scope:
+  - Automate and scale in production level (not a few test accounts and wallets)
+  - Send sms and mails after claims or payment is made
+  - Better map the XRP drops to INR for ease in realworld implementation
+  - Better analysis for stats using AI/data analysis (fraud detection etc.)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 - This project is created using Node v20.18.1
