@@ -2,10 +2,11 @@
 
 ---
 ### Features
+#### Citizen dashboard
 - Patient can see the policies he/she can claim and their respective balances
 - Patient can see status of the previous claims (Approved, Rejected or Pending)
 - Patient can pay to hospital and get the proof - which can prove the sender, receiver and amount on the ledger.
-
+#### Admin
 - Admin is assigned a specific policy
 - He/she can see all claims and can approve/ reject them.
 - Criteria for approval:
@@ -13,7 +14,7 @@
   - Available policy balance >= claim amount
 - Stats are available - overall and policywise
 
-- Future scope:
+#### Future scope:
   - Automate and scale in production level (not a few test accounts and wallets)
   - Send sms and mails after claims or payment is made
   - Better map the XRP drops to INR for ease in realworld implementation
