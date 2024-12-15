@@ -15,7 +15,7 @@
 - Stats are available - overall and policywise
 
 #### Future scope:
-  - Automate and scale in production level (not a few test accounts and wallets)
+  - Automate by combining the 2 step approval process and scale in production level (not a few test accounts and wallets)
   - Send sms and mails after claims or payment is made
   - Better map the XRP drops to INR for ease in realworld implementation
   - Better analysis for stats using AI/data analysis (fraud detection etc.)
